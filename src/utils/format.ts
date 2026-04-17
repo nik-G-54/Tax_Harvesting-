@@ -1,11 +1,11 @@
 export const fmt = (n: number): string => {
   const abs = Math.abs(n);
   let str;
-  if (abs >= 1e7) str = (abs / 1e7).toFixed(2) + "Cr";
-  else if (abs >= 1e5) str = (abs / 1e5).toFixed(2) + "L";
+  if (abs >= 1e9) str = (abs / 1e9).toFixed(2) + "B";
+  else if (abs >= 1e6) str = (abs / 1e6).toFixed(2) + "M";
   else if (abs >= 1e3) str = (abs / 1e3).toFixed(2) + "K";
   else str = abs.toFixed(2);
-  return (n < 0 ? "-" : "") + "₹" + str;
+  return (n < 0 ? "-" : "") + "$" + str;
 };
 
 export const fmtNum = (n: number, decimals = 6): string => {
