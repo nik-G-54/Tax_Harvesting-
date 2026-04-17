@@ -24,8 +24,8 @@ const HoldingsTable: React.FC = () => {
   };
 
   const sortIcon = (field: string) => {
-    if (state.sortField !== field) return <span className="ml-1 opacity-60">⇅</span>;
-    return <span className="ml-1">{state.sortDir === "desc" ? "↓" : "↑"}</span>;
+    if (state.sortField !== field) return null;
+    return <span className="ml-1 text-[#4f8ef7]">{state.sortDir === "desc" ? "↓" : "↑"}</span>;
   };
 
   const allSelected = state.holdings.length > 0 && state.selected.size === state.holdings.length;
@@ -36,12 +36,13 @@ const HoldingsTable: React.FC = () => {
 
   return (
     <div>
-      <h2 className="text-[18px] font-bold text-[#f1f5f9] mb-4">Holdings</h2>
-      <div className="bg-[#181f2e] border border-[#2d3748] rounded-[14px] overflow-hidden w-full overflow-x-auto">
-        <table className="w-full border-collapse min-w-[800px]">
-          <thead className="bg-[#1a2235]">
+      <h2 className="text-[18px] font-bold text-gray-900 dark:text-[#f1f5f9] mb-4">Holdings</h2>
+      <div className="bg-white dark:bg-[#181f2e] border border-gray-200 dark:border-[#2d3748] shadow-sm dark:shadow-none rounded-[14px] overflow-hidden w-full">
+        <div className="w-full overflow-x-auto">
+          <table className="w-full border-collapse min-w-full md:min-w-[800px]">
+            <thead className="bg-[#f8fafc] dark:bg-[#0b0f17] border-b border-gray-200 dark:border-[#1e2433]">
             <tr>
-              <th className="p-4 text-left font-semibold text-[12px] text-[#64748b] uppercase tracking-wider w-10">
+              <th className="py-5 px-4 md:px-6 text-left font-semibold text-[14px] text-gray-900 dark:text-[#f1f5f9] tracking-wide w-10 md:w-12 border-none">
                 <input
                   type="checkbox"
                   className="w-[17px] h-[17px] cursor-pointer accent-[#2563eb]"
@@ -50,33 +51,33 @@ const HoldingsTable: React.FC = () => {
                   onChange={() => dispatch({ type: "TOGGLE_ALL" })}
                 />
               </th>
-              <th className="p-4 text-left font-semibold text-[12px] text-[#64748b] uppercase tracking-wider">Asset</th>
-              <th className="p-4 text-right font-semibold text-[12px] text-[#64748b] uppercase tracking-wider cursor-pointer select-none hover:text-[#94a3b8] transition-colors" onClick={() => handleSort("totalHolding")}>
-                Holdings<br /><span className="text-[10px] normal-case text-[#475569]">Avg Buy Price</span>
-                {sortIcon("totalHolding")}
+              <th className="py-5 px-4 md:px-6 text-left font-semibold text-[14px] text-gray-900 dark:text-[#f1f5f9] tracking-wide border-none">Asset</th>
+              <th className="py-5 px-4 md:px-6 text-right md:text-center font-semibold text-[14px] text-gray-900 dark:text-[#f1f5f9] tracking-wide cursor-pointer border-none" onClick={() => handleSort("totalHolding")}>
+                Holdings<br /><span className="hidden md:inline-block text-[11px] text-gray-500 dark:text-[#94a3b8] font-normal leading-tight mt-1">Current Market Rate</span>
               </th>
-              <th className="p-4 text-right font-semibold text-[12px] text-[#64748b] uppercase tracking-wider cursor-pointer select-none hover:text-[#94a3b8] transition-colors" onClick={() => handleSort("currentPrice")}>
-                Current Price {sortIcon("currentPrice")}
+              <th className="py-5 px-6 hidden md:table-cell text-center font-semibold text-[14px] text-gray-900 dark:text-[#f1f5f9] tracking-wide cursor-pointer border-none" onClick={() => handleSort("currentPrice")}>
+                Total Current Value {sortIcon("currentPrice")}
               </th>
-              <th className="p-4 text-right font-semibold text-[12px] text-[#64748b] uppercase tracking-wider cursor-pointer select-none hover:text-[#94a3b8] transition-colors" onClick={() => handleSort("stcg_gain")}>
-                Short-Term {sortIcon("stcg_gain")}
+              <th className="py-5 px-6 hidden md:table-cell text-center font-semibold text-[14px] text-gray-900 dark:text-[#f1f5f9] tracking-wide cursor-pointer border-none" onClick={() => handleSort("stcg_gain")}>
+                Short-term {sortIcon("stcg_gain")}
               </th>
-              <th className="p-4 text-right font-semibold text-[12px] text-[#64748b] uppercase tracking-wider cursor-pointer select-none hover:text-[#94a3b8] transition-colors" onClick={() => handleSort("ltcg_gain")}>
+              <th className="py-5 px-6 hidden md:table-cell text-center font-semibold text-[14px] text-gray-900 dark:text-[#f1f5f9] tracking-wide cursor-pointer border-none" onClick={() => handleSort("ltcg_gain")}>
                 Long-Term {sortIcon("ltcg_gain")}
               </th>
-              <th className="p-4 text-right font-semibold text-[12px] text-[#64748b] uppercase tracking-wider">Amount to Sell</th>
+              <th className="py-5 px-6 hidden md:table-cell text-center font-semibold text-[14px] text-gray-900 dark:text-[#f1f5f9] tracking-wide border-none">Amount to Sell</th>
             </tr>
           </thead>
           <tbody>
-            {displayHoldings.map((h, i) => (
-              <HoldingRow key={h.coin + i} holding={h} />
+            {displayHoldings.map((h) => (
+              <HoldingRow key={h.id} holding={h} />
             ))}
           </tbody>
         </table>
+        </div>
         
         {state.holdings.length > 4 && (
           <div 
-            className="text-center py-4 text-[#4f8ef7] text-[14px] font-semibold cursor-pointer hover:bg-[#1e2640] transition-colors border-t border-[#1e2433]"
+            className="text-center py-4 text-[#4f8ef7] text-[14px] font-semibold cursor-pointer hover:bg-gray-50 dark:hover:bg-[#1e2640] transition-colors border-t border-gray-200 dark:border-[#1e2433]"
             onClick={() => dispatch({ type: "TOGGLE_SHOW_ALL" })}
           >
             {state.showAll ? "View Less" : "View All"}

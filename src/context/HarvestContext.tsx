@@ -95,13 +95,13 @@ export const useAfterGains = () => {
     if (holding) {
       if (holding.stcg.gain > 0) {
         stcgProfits += holding.stcg.gain;
-      } else {
+      } else if (holding.stcg.gain < 0) {
         stcgLosses += Math.abs(holding.stcg.gain);
       }
       
       if (holding.ltcg.gain > 0) {
         ltcgProfits += holding.ltcg.gain;
-      } else {
+      } else if (holding.ltcg.gain < 0) {
         ltcgLosses += Math.abs(holding.ltcg.gain);
       }
     }

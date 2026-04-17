@@ -2,6 +2,54 @@ import { Holding, CapitalGains } from '../types';
 
 const holdingsData: Omit<Holding, 'id'>[] = [
   {
+    "coin": "ETH",
+    "coinName": "Ethereum",
+    "logo": "https://coin-images.coingecko.com/coins/images/279/large/ethereum.png?1696501628",
+    "currentPrice": 2531.06,
+    "totalHolding": 20028.05,
+    "averageBuyPrice": 3367.78,
+    "stcg": {
+      "balance": 20028.05,
+      "gain": -16760000
+    },
+    "ltcg": {
+      "balance": 0,
+      "gain": 0
+    }
+  },
+  {
+    "coin": "SOL",
+    "coinName": "Solana",
+    "logo": "https://coin-images.coingecko.com/coins/images/4128/large/solana.png?1696504756",
+    "currentPrice": 174.37,
+    "totalHolding": 20277.78,
+    "averageBuyPrice": 192.15,
+    "stcg": {
+      "balance": 20277.78,
+      "gain": -360410
+    },
+    "ltcg": {
+      "balance": 0,
+      "gain": 0
+    }
+  },
+  {
+    "coin": "BNB",
+    "coinName": "BNB",
+    "logo": "https://coin-images.coingecko.com/coins/images/825/large/bnb-icon2_2x.png?1696501970",
+    "currentPrice": 665.55,
+    "totalHolding": 7020.16,
+    "averageBuyPrice": 708.72,
+    "stcg": {
+      "balance": 7020.16,
+      "gain": -303050
+    },
+    "ltcg": {
+      "balance": 0,
+      "gain": 0
+    }
+  },
+  {
     "coin": "USDC",
     "coinName": "USDC",
     "logo": "https://coin-images.coingecko.com/coins/images/6319/large/usdc.png?1696506694",
@@ -27,22 +75,6 @@ const holdingsData: Omit<Holding, 'id'>[] = [
     "stcg": {
       "balance": 0.00023999998390319965,
       "gain": 49.957471193511736
-    },
-    "ltcg": {
-      "balance": 0,
-      "gain": 0
-    }
-  },
-  {
-    "coin": "SOL",
-    "coinName": "SOL (Wormhole)",
-    "logo": "https://coin-images.coingecko.com/coins/images/22876/large/SOL_wh_small.png?1696522175",
-    "currentPrice": 14758.01,
-    "totalHolding": 3.469446951953614e-17,
-    "averageBuyPrice": 221.42847548590152,
-    "stcg": {
-      "balance": 3.469446951953614e-17,
-      "gain": 5.043389846205066e-13
     },
     "ltcg": {
       "balance": 0,
@@ -203,22 +235,6 @@ const holdingsData: Omit<Holding, 'id'>[] = [
     "stcg": {
       "balance": 150000,
       "gain": 2.4345
-    },
-    "ltcg": {
-      "balance": 0,
-      "gain": 0
-    }
-  },
-  {
-    "coin": "ETH",
-    "coinName": "Ethereum",
-    "logo": "https://coin-images.coingecko.com/coins/images/279/large/ethereum.png?1696501628",
-    "currentPrice": 216182,
-    "totalHolding": 0.0004211938732637162,
-    "averageBuyPrice": 3909.792264648455,
-    "stcg": {
-      "balance": 0.0004211938732637162,
-      "gain": 89.40775336229291
     },
     "ltcg": {
       "balance": 0,
@@ -405,14 +421,15 @@ const holdingsData: Omit<Holding, 'id'>[] = [
 
 const capitalGainsData: CapitalGains = {
   stcg: {
-      profits: 70200.88,
-      losses: 1548.53
+      profits: 4049.48,
+      losses: 32127.03
   },
   ltcg: {
-      profits: 5020,
-      losses: 3050
+      profits: 0,
+      losses: 0
   }
 };
+
 
 export const fetchHoldings = async (): Promise<Holding[]> => {
   return new Promise((resolve) => {
