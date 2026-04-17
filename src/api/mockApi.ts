@@ -414,13 +414,19 @@ const capitalGainsData: CapitalGains = {
   }
 };
 
-export const fetchMockData = async (): Promise<{ holdings: Holding[], capitalGains: CapitalGains }> => {
+export const fetchHoldings = async (): Promise<Holding[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve({
-        holdings: holdingsData.map((h, id) => ({ ...h, id })),
-        capitalGains: capitalGainsData
-      });
+      resolve(holdingsData.map((h, id) => ({ ...h, id })));
     }, 600);
   });
 };
+
+export const fetchCapitalGains = async (): Promise<{ capitalGains: CapitalGains }> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ capitalGains: capitalGainsData });
+    }, 400);
+  });
+};
+
